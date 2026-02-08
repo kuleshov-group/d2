@@ -1,0 +1,13 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch \
+    --config_file ddp_config.yaml \
+    --main_process_port 29500 \
+    --num_processes 8 ./anyorder_sft_train.py \
+    --grad_accum_steps 1 \
+    --batch_size 1 \
+    --num_epochs 20 \
+    --job_name anyorder_sft_train_gsm8k \
+    --train_data gsm8k \
+    --output_dir ./outputs/anyorder_sft_train_gsm8k \
+    --block_length 32 \
+    --data_path ../dataset/gsm8k_genlength1024_lladaminidistill.jsonl \
+    --model_name GuanghanWang/d2_anyorder_causal_llada_intellectsft
